@@ -4,588 +4,435 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مؤسسة الشهداء ميسان - قسم الأراضي والعقارات</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            direction: rtl;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header h2 {
-            color: #34495e;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .header p {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
-        }
-
-        .logo i {
-            color: white;
-            font-size: 2.5rem;
-        }
-
-        .search-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .search-title {
-            font-size: 1.5rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 15px 50px 15px 20px;
-            border: 2px solid #e0e6ed;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border: none;
-            padding: 10px 15px;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .filters {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .filter-label {
-            color: #34495e;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        .filter-select {
-            padding: 12px 15px;
-            border: 2px solid #e0e6ed;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .results-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .results-title {
-            font-size: 1.4rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .result-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .result-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .result-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .result-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .status-badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
-        }
-
-        .status-received {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .result-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .detail-label {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            color: #2c3e50;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .no-results {
-            text-align: center;
-            color: #7f8c8d;
-            font-size: 1.2rem;
-            padding: 40px;
-        }
-
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .header h2 {
-                font-size: 1.4rem;
-            }
-
-            .result-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .filters {
-                grid-template-columns: 1fr;
-            }
-
-            .result-details {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <i class="fas fa-home"></i>
-            </div>
-            <h1>مؤسسة الشهداء ميسان</h1>
-            <h2>قسم الأراضي والعقارات</h2>
-            <p>نظام إدارة ومتابعة توزيع الأراضي على عوائل الشهداء الكرام</p>
-        </div>
-
-        <!-- Statistics Section -->
-        <div class="stats-section">
-            <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(45deg, #3498db, #2980b9);">
-                    <i class="fas fa-users"></i>
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">🏛️</div>
+                <div class="header-text">
+                    <h1>مؤسسة الشهداء ميسان</h1>
+                    <h2>قسم الأراضي والعقارات</h2>
                 </div>
-                <div class="stat-number" id="totalApplicants">1,247</div>
-                <div class="stat-label">إجمالي المتقدمين</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(45deg, #2ecc71, #27ae60);">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="stat-number" id="receivedLands">892</div>
-                <div class="stat-label">استلموا الأراضي</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(45deg, #f39c12, #e67e22);">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="stat-number" id="pendingLands">355</div>
-                <div class="stat-label">في انتظار الاستلام</div>
-            </div>
-        </div>
+        </header>
 
         <!-- Search Section -->
-        <div class="search-section">
-            <h3 class="search-title">
-                <i class="fas fa-search"></i>
-                البحث في قاعدة البيانات
-            </h3>
-            
-            <div class="search-box">
-                <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن الاسم الثلاثي (مثال: محمد علي محمد)">
-                <button class="search-btn" onclick="performSearch()">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-
-            <div class="filters">
-                <div class="filter-group">
-                    <label class="filter-label">حالة الاستلام</label>
-                    <select class="filter-select" id="statusFilter">
-                        <option value="">جميع الحالات</option>
-                        <option value="received">استلم الأرض</option>
-                        <option value="pending">لم يستلم</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">سنة التقديم</label>
-                    <select class="filter-select" id="yearFilter">
-                        <option value="">جميع السنوات</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">المنطقة</label>
-                    <select class="filter-select" id="areaFilter">
-                        <option value="">جميع المناطق</option>
-                        <option value="العمارة">العمارة</option>
-                        <option value="علي الغربي">علي الغربي</option>
-                        <option value="الميمونة">الميمونة</option>
-                        <option value="قلعة صالح">قلعة صالح</option>
-                        <option value="المجر الكبير">المجر الكبير</option>
-                    </select>
+        <section class="search-section">
+            <div class="search-container">
+                <h3>البحث في قاعدة البيانات</h3>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="ابحث عن اسم المستفيد...">
+                    <button onclick="searchRecords()">🔍 بحث</button>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Results Section -->
-        <div class="results-section">
-            <h3 class="results-title">
-                <i class="fas fa-list"></i>
-                نتائج البحث (<span id="resultsCount">0</span>)
-            </h3>
-            <div id="searchResults">
-                <div class="no-results">
-                    قم بإدخال اسم للبحث في قاعدة البيانات
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <h3>نتائج البحث</h3>
+            <div id="searchResults"></div>
+        </section>
+
+        <!-- Add New Record Section -->
+        <section class="add-section">
+            <div class="section-header">
+                <h3>إضافة سجل جديد</h3>
+                <button class="btn-primary" onclick="addNewForm()">➕ إضافة استمارة أخرى</button>
+            </div>
+            
+            <div id="formsContainer">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h4>استمارة رقم 1</h4>
+                        <button class="btn-danger" onclick="removeForm(this)" style="display: none;">❌ حذف</button>
+                    </div>
+                    
+                    <form class="record-form">
+                        <div class="form-group">
+                            <label for="name">الاسم الثلاثي:</label>
+                            <input type="text" name="name" placeholder="مثال: محمد علي محمد" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">حالة الاستلام:</label>
+                            <select name="status" required>
+                                <option value="">اختر الحالة</option>
+                                <option value="لم يستلم">لم يستلم قطعة أرض</option>
+                                <option value="استلم">استلم قطعة أرض</option>
+                                <option value="قيد المراجعة">قيد المراجعة</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submitDate">تاريخ التقديم:</label>
+                            <input type="date" name="submitDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="decisionNumber">رقم القرار:</label>
+                            <input type="text" name="decisionNumber" placeholder="رقم القرار الإداري" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="martyrName">اسم الشهيد:</label>
+                            <input type="text" name="martyrName" placeholder="اسم الشهيد المرتبط بالطلب" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">ملاحظات إضافية:</label>
+                            <textarea name="notes" placeholder="أي ملاحظات أخرى..." rows="3"></textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
+
+            <div class="form-actions">
+                <button class="btn-success" onclick="saveAllRecords()">💾 حفظ جميع السجلات</button>
+                <button class="btn-secondary" onclick="clearAllForms()">🗑️ مسح الكل</button>
+            </div>
+        </section>
+
+        <!-- Records Display Section -->
+        <section class="records-section">
+            <div class="section-header">
+                <h3>السجلات المحفوظة</h3>
+                <button class="btn-info" onclick="exportRecords()">📥 تصدير البيانات</button>
+            </div>
+            <div id="recordsDisplay"></div>
+        </section>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 مؤسسة الشهداء ميسان - قسم الأراضي والعقارات</p>
+        <p>جميع الحقوق محفوظة</p>
+    </footer>
+
     <script>
-        // Sample database
-        const database = [
-            {
-                id: 1,
-                name: "محمد علي محمد",
-                status: "pending",
-                applicationDate: "2023/05/15",
-                decisionNumber: "قرار رقم 245/2023",
-                martyrName: "علي محمد حسن",
-                area: "العمارة",
-                landSize: "200 متر مربع",
-                notes: "في انتظار إنجاز الأوراق الرسمية"
-            },
-            {
-                id: 2,
-                name: "أحمد حسين علي",
-                status: "received",
-                applicationDate: "2022/08/22",
-                decisionNumber: "قرار رقم 189/2022",
-                martyrName: "حسين علي جاسم",
-                area: "علي الغربي",
-                landSize: "250 متر مربع",
-                receivedDate: "2023/01/10",
-                notes: "تم استلام الأرض بالكامل"
-            },
-            {
-                id: 3,
-                name: "فاطمة صادق محمد",
-                status: "pending",
-                applicationDate: "2023/12/03",
-                decisionNumber: "قرار رقم 312/2023",
-                martyrName: "صادق محمد حسن",
-                area: "الميمونة",
-                landSize: "180 متر مربع",
-                notes: "قيد المراجعة النهائية"
-            },
-            {
-                id: 4,
-                name: "عبد الله كريم جاسم",
-                status: "received",
-                applicationDate: "2021/11/18",
-                decisionNumber: "قرار رقم 156/2021",
-                martyrName: "كريم جاسم علي",
-                area: "قلعة صالح",
-                landSize: "300 متر مربع",
-                receivedDate: "2022/03/25",
-                notes: "تم التسليم مع كافة الوثائق"
-            },
-            {
-                id: 5,
-                name: "زينب حامد سعد",
-                status: "pending",
-                applicationDate: "2024/02/14",
-                decisionNumber: "قرار رقم 087/2024",
-                martyrName: "حامد سعد علي",
-                area: "المجر الكبير",
-                landSize: "220 متر مربع",
-                notes: "في انتظار المسح الميداني"
-            }
-        ];
+        let formCounter = 1;
+        let records = [];
 
-        let filteredResults = [...database];
+        // Load saved records on page load
+        window.onload = function() {
+            loadRecords();
+            displayRecords();
+        };
 
-        function performSearch() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            const statusFilter = document.getElementById('statusFilter').value;
-            const yearFilter = document.getElementById('yearFilter').value;
-            const areaFilter = document.getElementById('areaFilter').value;
+        function addNewForm() {
+            formCounter++;
+            const formsContainer = document.getElementById('formsContainer');
+            
+            const formCard = document.createElement('div');
+            formCard.className = 'form-card';
+            formCard.innerHTML = `
+                <div class="form-header">
+                    <h4>استمارة رقم ${formCounter}</h4>
+                    <button class="btn-danger" onclick="removeForm(this)">❌ حذف</button>
+                </div>
+                
+                <form class="record-form">
+                    <div class="form-group">
+                        <label for="name">الاسم الثلاثي:</label>
+                        <input type="text" name="name" placeholder="مثال: محمد علي محمد" required>
+                    </div>
 
-            filteredResults = database.filter(record => {
-                const matchesName = !searchTerm || record.name.toLowerCase().includes(searchTerm);
-                const matchesStatus = !statusFilter || record.status === statusFilter;
-                const matchesYear = !yearFilter || record.applicationDate.includes(yearFilter);
-                const matchesArea = !areaFilter || record.area === areaFilter;
+                    <div class="form-group">
+                        <label for="status">حالة الاستلام:</label>
+                        <select name="status" required>
+                            <option value="">اختر الحالة</option>
+                            <option value="لم يستلم">لم يستلم قطعة أرض</option>
+                            <option value="استلم">استلم قطعة أرض</option>
+                            <option value="قيد المراجعة">قيد المراجعة</option>
+                        </select>
+                    </div>
 
-                return matchesName && matchesStatus && matchesYear && matchesArea;
-            });
+                    <div class="form-group">
+                        <label for="submitDate">تاريخ التقديم:</label>
+                        <input type="date" name="submitDate" required>
+                    </div>
 
-            displayResults();
+                    <div class="form-group">
+                        <label for="decisionNumber">رقم القرار:</label>
+                        <input type="text" name="decisionNumber" placeholder="رقم القرار الإداري" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="martyrName">اسم الشهيد:</label>
+                        <input type="text" name="martyrName" placeholder="اسم الشهيد المرتبط بالطلب" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">ملاحظات إضافية:</label>
+                        <textarea name="notes" placeholder="أي ملاحظات أخرى..." rows="3"></textarea>
+                    </div>
+                </form>
+            `;
+            
+            formsContainer.appendChild(formCard);
+            
+            // Show delete button for all forms except the first one
+            updateDeleteButtons();
         }
 
-        function displayResults() {
-            const resultsContainer = document.getElementById('searchResults');
-            const resultsCount = document.getElementById('resultsCount');
-            
-            resultsCount.textContent = filteredResults.length;
+        function removeForm(button) {
+            const formCard = button.closest('.form-card');
+            formCard.remove();
+            updateFormNumbers();
+            updateDeleteButtons();
+        }
 
-            if (filteredResults.length === 0) {
-                resultsContainer.innerHTML = '<div class="no-results">لا توجد نتائج مطابقة لمعايير البحث</div>';
+        function updateFormNumbers() {
+            const formCards = document.querySelectorAll('.form-card');
+            formCards.forEach((card, index) => {
+                const header = card.querySelector('h4');
+                header.textContent = `استمارة رقم ${index + 1}`;
+            });
+            formCounter = formCards.length;
+        }
+
+        function updateDeleteButtons() {
+            const deleteButtons = document.querySelectorAll('.btn-danger');
+            deleteButtons.forEach((button, index) => {
+                button.style.display = index === 0 && deleteButtons.length === 1 ? 'none' : 'inline-block';
+            });
+        }
+
+        function saveAllRecords() {
+            const forms = document.querySelectorAll('.record-form');
+            let newRecords = [];
+            
+            forms.forEach((form, index) => {
+                const formData = new FormData(form);
+                const record = {
+                    id: Date.now() + index,
+                    name: formData.get('name'),
+                    status: formData.get('status'),
+                    submitDate: formData.get('submitDate'),
+                    decisionNumber: formData.get('decisionNumber'),
+                    martyrName: formData.get('martyrName'),
+                    notes: formData.get('notes'),
+                    createdAt: new Date().toLocaleString('ar-IQ')
+                };
+                
+                if (record.name && record.status && record.submitDate && record.decisionNumber && record.martyrName) {
+                    newRecords.push(record);
+                }
+            });
+            
+            if (newRecords.length > 0) {
+                records.push(...newRecords);
+                saveRecords();
+                displayRecords();
+                clearAllForms();
+                alert(`تم حفظ ${newRecords.length} سجل بنجاح!`);
+            } else {
+                alert('يرجى ملء جميع الحقول المطلوبة!');
+            }
+        }
+
+        function clearAllForms() {
+            document.getElementById('formsContainer').innerHTML = `
+                <div class="form-card">
+                    <div class="form-header">
+                        <h4>استمارة رقم 1</h4>
+                        <button class="btn-danger" onclick="removeForm(this)" style="display: none;">❌ حذف</button>
+                    </div>
+                    
+                    <form class="record-form">
+                        <div class="form-group">
+                            <label for="name">الاسم الثلاثي:</label>
+                            <input type="text" name="name" placeholder="مثال: محمد علي محمد" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">حالة الاستلام:</label>
+                            <select name="status" required>
+                                <option value="">اختر الحالة</option>
+                                <option value="لم يستلم">لم يستلم قطعة أرض</option>
+                                <option value="استلم">استلم قطعة أرض</option>
+                                <option value="قيد المراجعة">قيد المراجعة</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="submitDate">تاريخ التقديم:</label>
+                            <input type="date" name="submitDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="decisionNumber">رقم القرار:</label>
+                            <input type="text" name="decisionNumber" placeholder="رقم القرار الإداري" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="martyrName">اسم الشهيد:</label>
+                            <input type="text" name="martyrName" placeholder="اسم الشهيد المرتبط بالطلب" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">ملاحظات إضافية:</label>
+                            <textarea name="notes" placeholder="أي ملاحظات أخرى..." rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+            `;
+            formCounter = 1;
+        }
+
+        function searchRecords() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            const resultsSection = document.getElementById('resultsSection');
+            const searchResults = document.getElementById('searchResults');
+            
+            if (!searchTerm) {
+                resultsSection.style.display = 'none';
                 return;
             }
-
-            resultsContainer.innerHTML = filteredResults.map(record => `
-                <div class="result-card">
-                    <div class="result-header">
-                        <div class="result-name">${record.name}</div>
-                        <div class="status-badge ${record.status === 'received' ? 'status-received' : 'status-pending'}">
-                            ${record.status === 'received' ? 'استلم الأرض' : 'لم يستلم'}
+            
+            const filteredRecords = records.filter(record => 
+                record.name.toLowerCase().includes(searchTerm) ||
+                record.martyrName.toLowerCase().includes(searchTerm) ||
+                record.decisionNumber.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredRecords.length > 0) {
+                searchResults.innerHTML = filteredRecords.map(record => `
+                    <div class="record-item">
+                        <div class="record-header">
+                            <h4>${record.name}</h4>
+                            <span class="status-badge status-${record.status.replace(' ', '-')}">${record.status}</span>
+                        </div>
+                        <div class="record-details">
+                            <p><strong>تاريخ التقديم:</strong> ${record.submitDate}</p>
+                            <p><strong>رقم القرار:</strong> ${record.decisionNumber}</p>
+                            <p><strong>اسم الشهيد:</strong> ${record.martyrName}</p>
+                            ${record.notes ? `<p><strong>ملاحظات:</strong> ${record.notes}</p>` : ''}
+                            <p class="created-at">تاريخ الإنشاء: ${record.createdAt}</p>
+                        </div>
+                        <div class="record-actions">
+                            <button class="btn-warning" onclick="editRecord(${record.id})">✏️ تعديل</button>
+                            <button class="btn-danger" onclick="deleteRecord(${record.id})">🗑️ حذف</button>
                         </div>
                     </div>
-                    <div class="result-details">
-                        <div class="detail-item">
-                            <div class="detail-label">تاريخ التقديم</div>
-                            <div class="detail-value">${record.applicationDate}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">رقم القرار</div>
-                            <div class="detail-value">${record.decisionNumber}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">اسم الشهيد</div>
-                            <div class="detail-value">${record.martyrName}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">المنطقة</div>
-                            <div class="detail-value">${record.area}</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">مساحة الأرض</div>
-                            <div class="detail-value">${record.landSize}</div>
-                        </div>
-                        ${record.receivedDate ? `
-                        <div class="detail-item">
-                            <div class="detail-label">تاريخ الاستلام</div>
-                            <div class="detail-value">${record.receivedDate}</div>
-                        </div>
-                        ` : ''}
-                        <div class="detail-item">
-                            <div class="detail-label">ملاحظات</div>
-                            <div class="detail-value">${record.notes}</div>
-                        </div>
+                `).join('');
+                resultsSection.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<p class="no-results">لا توجد نتائج للبحث المحدد</p>';
+                resultsSection.style.display = 'block';
+            }
+        }
+
+        function displayRecords() {
+            const recordsDisplay = document.getElementById('recordsDisplay');
+            
+            if (records.length === 0) {
+                recordsDisplay.innerHTML = '<p class="no-records">لا توجد سجلات محفوظة</p>';
+                return;
+            }
+            
+            recordsDisplay.innerHTML = records.map(record => `
+                <div class="record-item">
+                    <div class="record-header">
+                        <h4>${record.name}</h4>
+                        <span class="status-badge status-${record.status.replace(' ', '-')}">${record.status}</span>
+                    </div>
+                    <div class="record-details">
+                        <p><strong>تاريخ التقديم:</strong> ${record.submitDate}</p>
+                        <p><strong>رقم القرار:</strong> ${record.decisionNumber}</p>
+                        <p><strong>اسم الشهيد:</strong> ${record.martyrName}</p>
+                        ${record.notes ? `<p><strong>ملاحظات:</strong> ${record.notes}</p>` : ''}
+                        <p class="created-at">تاريخ الإنشاء: ${record.createdAt}</p>
+                    </div>
+                    <div class="record-actions">
+                        <button class="btn-warning" onclick="editRecord(${record.id})">✏️ تعديل</button>
+                        <button class="btn-danger" onclick="deleteRecord(${record.id})">🗑️ حذف</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Auto-search on input change
-        document.getElementById('searchInput').addEventListener('input', performSearch);
-        document.getElementById('statusFilter').addEventListener('change', performSearch);
-        document.getElementById('yearFilter').addEventListener('change', performSearch);
-        document.getElementById('areaFilter').addEventListener('change', performSearch);
+        function deleteRecord(id) {
+            if (confirm('هل أنت متأكد من حذف هذا السجل؟')) {
+                records = records.filter(record => record.id !== id);
+                saveRecords();
+                displayRecords();
+                // Update search results if visible
+                const resultsSection = document.getElementById('resultsSection');
+                if (resultsSection.style.display !== 'none') {
+                    searchRecords();
+                }
+            }
+        }
 
-        // Search on Enter key
+        function editRecord(id) {
+            const record = records.find(r => r.id === id);
+            if (record) {
+                const newName = prompt('الاسم الجديد:', record.name);
+                if (newName !== null && newName.trim()) {
+                    record.name = newName.trim();
+                    saveRecords();
+                    displayRecords();
+                    // Update search results if visible
+                    const resultsSection = document.getElementById('resultsSection');
+                    if (resultsSection.style.display !== 'none') {
+                        searchRecords();
+                    }
+                }
+            }
+        }
+
+        function exportRecords() {
+            if (records.length === 0) {
+                alert('لا توجد سجلات للتصدير');
+                return;
+            }
+            
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "الاسم,الحالة,تاريخ التقديم,رقم القرار,اسم الشهيد,الملاحظات,تاريخ الإنشاء\n"
+                + records.map(record => 
+                    `"${record.name}","${record.status}","${record.submitDate}","${record.decisionNumber}","${record.martyrName}","${record.notes || ''}","${record.createdAt}"`
+                ).join('\n');
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `سجلات_الاراضي_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function saveRecords() {
+            // In a real application, this would save to a database
+            // For now, we'll use localStorage
+            try {
+                localStorage.setItem('martyrsLandRecords', JSON.stringify(records));
+            } catch (e) {
+                console.log('Cannot save to localStorage');
+            }
+        }
+
+        function loadRecords() {
+            try {
+                const savedRecords = localStorage.getItem('martyrsLandRecords');
+                if (savedRecords) {
+                    records = JSON.parse(savedRecords);
+                }
+            } catch (e) {
+                console.log('Cannot load from localStorage');
+                records = [];
+            }
+        }
+
+        // Add search on Enter key press
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                performSearch();
+                searchRecords();
             }
         });
-
-        // Initialize
-        performSearch();
     </script>
 </body>
 </html>
